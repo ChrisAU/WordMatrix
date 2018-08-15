@@ -1,0 +1,639 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		102503FFDD4C526408BA63A9 /* Pods_WordMatrix_WordMatrixTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B24D208FE3F11540D1209174 /* Pods_WordMatrix_WordMatrixTests.framework */; };
+		342D40ACBC47F6F4237240F4 /* Pods_WordMatrix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7BD2011437323C50A01E904 /* Pods_WordMatrix.framework */; };
+		8320CCB7211564E5003E9792 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8320CCB6211564E5003E9792 /* AppDelegate.swift */; };
+		8320CCBC211564E5003E9792 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8320CCBA211564E5003E9792 /* Main.storyboard */; };
+		8320CCBE211564E9003E9792 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8320CCBD211564E9003E9792 /* Assets.xcassets */; };
+		8320CCC1211564E9003E9792 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8320CCBF211564E9003E9792 /* LaunchScreen.storyboard */; };
+		8320CCC9211564F9003E9792 /* Redux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8320CCC8211564F9003E9792 /* Redux.swift */; };
+		833607702124D43500812EB3 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8336076F2124D43500812EB3 /* Model.swift */; };
+		833607752124E1F300812EB3 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833607742124E1F300812EB3 /* GameViewController.swift */; };
+		83476DF62120A0A700BE5349 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83476DF52120A0A700BE5349 /* GameState.swift */; };
+		83476DFE2120ABF700BE5349 /* WordMatrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83476DFD2120ABF700BE5349 /* WordMatrixTests.swift */; };
+		83476E062120AC5500BE5349 /* GameStateSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83476E052120AC5500BE5349 /* GameStateSpec.swift */; };
+		83476E0A2120E57F00BE5349 /* SequenceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83476E092120E57F00BE5349 /* SequenceSpec.swift */; };
+		83476E0C2120E89400BE5349 /* PointSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83476E0B2120E89400BE5349 /* PointSpec.swift */; };
+		83476E0E21220DE700BE5349 /* Sequence+Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83476E0D21220DE700BE5349 /* Sequence+Point.swift */; };
+		83476E1021220E0800BE5349 /* Array+Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83476E0F21220E0800BE5349 /* Array+Point.swift */; };
+		83476E1221220E2200BE5349 /* Sequence+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83476E1121220E2200BE5349 /* Sequence+Int.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		83476E002120ABF700BE5349 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8320CCAB211564E5003E9792 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8320CCB2211564E5003E9792;
+			remoteInfo = WordMatrix;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		46D7A7877278F4FB33154A6E /* Pods-WordMatrix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordMatrix.release.xcconfig"; path = "Pods/Target Support Files/Pods-WordMatrix/Pods-WordMatrix.release.xcconfig"; sourceTree = "<group>"; };
+		8320CCB3211564E5003E9792 /* WordMatrix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordMatrix.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8320CCB6211564E5003E9792 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8320CCBB211564E5003E9792 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8320CCBD211564E9003E9792 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8320CCC0211564E9003E9792 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8320CCC2211564E9003E9792 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8320CCC8211564F9003E9792 /* Redux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Redux.swift; sourceTree = "<group>"; };
+		8336076F2124D43500812EB3 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		833607742124E1F300812EB3 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		83476DF52120A0A700BE5349 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		83476DFB2120ABF700BE5349 /* WordMatrixTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WordMatrixTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		83476DFD2120ABF700BE5349 /* WordMatrixTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordMatrixTests.swift; sourceTree = "<group>"; };
+		83476DFF2120ABF700BE5349 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83476E052120AC5500BE5349 /* GameStateSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateSpec.swift; sourceTree = "<group>"; };
+		83476E092120E57F00BE5349 /* SequenceSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceSpec.swift; sourceTree = "<group>"; };
+		83476E0B2120E89400BE5349 /* PointSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointSpec.swift; sourceTree = "<group>"; };
+		83476E0D21220DE700BE5349 /* Sequence+Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Point.swift"; sourceTree = "<group>"; };
+		83476E0F21220E0800BE5349 /* Array+Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Point.swift"; sourceTree = "<group>"; };
+		83476E1121220E2200BE5349 /* Sequence+Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Int.swift"; sourceTree = "<group>"; };
+		B24D208FE3F11540D1209174 /* Pods_WordMatrix_WordMatrixTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WordMatrix_WordMatrixTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7BD2011437323C50A01E904 /* Pods_WordMatrix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WordMatrix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C655A6BB942B20102D99569D /* Pods-WordMatrix-WordMatrixTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordMatrix-WordMatrixTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WordMatrix-WordMatrixTests/Pods-WordMatrix-WordMatrixTests.debug.xcconfig"; sourceTree = "<group>"; };
+		EBBB40D937C8AFD220B9CD17 /* Pods-WordMatrix-WordMatrixTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordMatrix-WordMatrixTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WordMatrix-WordMatrixTests/Pods-WordMatrix-WordMatrixTests.release.xcconfig"; sourceTree = "<group>"; };
+		FF992B4A6A04F7871E53FE2D /* Pods-WordMatrix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordMatrix.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WordMatrix/Pods-WordMatrix.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8320CCB0211564E5003E9792 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				342D40ACBC47F6F4237240F4 /* Pods_WordMatrix.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83476DF82120ABF700BE5349 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				102503FFDD4C526408BA63A9 /* Pods_WordMatrix_WordMatrixTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0353BB7CF18C76F383DE2A5A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FF992B4A6A04F7871E53FE2D /* Pods-WordMatrix.debug.xcconfig */,
+				46D7A7877278F4FB33154A6E /* Pods-WordMatrix.release.xcconfig */,
+				C655A6BB942B20102D99569D /* Pods-WordMatrix-WordMatrixTests.debug.xcconfig */,
+				EBBB40D937C8AFD220B9CD17 /* Pods-WordMatrix-WordMatrixTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		8320CCAA211564E5003E9792 = {
+			isa = PBXGroup;
+			children = (
+				8320CCB5211564E5003E9792 /* WordMatrix */,
+				83476DFC2120ABF700BE5349 /* WordMatrixTests */,
+				8320CCB4211564E5003E9792 /* Products */,
+				0353BB7CF18C76F383DE2A5A /* Pods */,
+				F32409796A25C862516ABE58 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8320CCB4211564E5003E9792 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8320CCB3211564E5003E9792 /* WordMatrix.app */,
+				83476DFB2120ABF700BE5349 /* WordMatrixTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8320CCB5211564E5003E9792 /* WordMatrix */ = {
+			isa = PBXGroup;
+			children = (
+				83476DEC212061B800BE5349 /* State */,
+				83476DEB212061A100BE5349 /* View */,
+				8320CCB6211564E5003E9792 /* AppDelegate.swift */,
+				8320CCBA211564E5003E9792 /* Main.storyboard */,
+				8320CCBD211564E9003E9792 /* Assets.xcassets */,
+				8320CCBF211564E9003E9792 /* LaunchScreen.storyboard */,
+				8320CCC2211564E9003E9792 /* Info.plist */,
+			);
+			path = WordMatrix;
+			sourceTree = "<group>";
+		};
+		83476DEB212061A100BE5349 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				833607742124E1F300812EB3 /* GameViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		83476DEC212061B800BE5349 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				8320CCC8211564F9003E9792 /* Redux.swift */,
+				8336076F2124D43500812EB3 /* Model.swift */,
+				83476E0F21220E0800BE5349 /* Array+Point.swift */,
+				83476E1121220E2200BE5349 /* Sequence+Int.swift */,
+				83476E0D21220DE700BE5349 /* Sequence+Point.swift */,
+				83476DF52120A0A700BE5349 /* GameState.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		83476DFC2120ABF700BE5349 /* WordMatrixTests */ = {
+			isa = PBXGroup;
+			children = (
+				83476DFD2120ABF700BE5349 /* WordMatrixTests.swift */,
+				83476E052120AC5500BE5349 /* GameStateSpec.swift */,
+				83476E0B2120E89400BE5349 /* PointSpec.swift */,
+				83476E092120E57F00BE5349 /* SequenceSpec.swift */,
+				83476DFF2120ABF700BE5349 /* Info.plist */,
+			);
+			path = WordMatrixTests;
+			sourceTree = "<group>";
+		};
+		F32409796A25C862516ABE58 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B7BD2011437323C50A01E904 /* Pods_WordMatrix.framework */,
+				B24D208FE3F11540D1209174 /* Pods_WordMatrix_WordMatrixTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8320CCB2211564E5003E9792 /* WordMatrix */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8320CCC5211564E9003E9792 /* Build configuration list for PBXNativeTarget "WordMatrix" */;
+			buildPhases = (
+				AF85068B747B97E4D6B9FE44 /* [CP] Check Pods Manifest.lock */,
+				8320CCAF211564E5003E9792 /* Sources */,
+				8320CCB0211564E5003E9792 /* Frameworks */,
+				8320CCB1211564E5003E9792 /* Resources */,
+				54E7A00E76FAEF1462E046DE /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WordMatrix;
+			productName = WordMatrix;
+			productReference = 8320CCB3211564E5003E9792 /* WordMatrix.app */;
+			productType = "com.apple.product-type.application";
+		};
+		83476DFA2120ABF700BE5349 /* WordMatrixTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 83476E022120ABF700BE5349 /* Build configuration list for PBXNativeTarget "WordMatrixTests" */;
+			buildPhases = (
+				A25974B460F532B8A0C62304 /* [CP] Check Pods Manifest.lock */,
+				83476DF72120ABF700BE5349 /* Sources */,
+				83476DF82120ABF700BE5349 /* Frameworks */,
+				83476DF92120ABF700BE5349 /* Resources */,
+				499826453880601839AD272C /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				83476E012120ABF700BE5349 /* PBXTargetDependency */,
+			);
+			name = WordMatrixTests;
+			productName = WordMatrixTests;
+			productReference = 83476DFB2120ABF700BE5349 /* WordMatrixTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8320CCAB211564E5003E9792 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = CJNevin;
+				TargetAttributes = {
+					8320CCB2211564E5003E9792 = {
+						CreatedOnToolsVersion = 9.4;
+						LastSwiftMigration = 1000;
+					};
+					83476DFA2120ABF700BE5349 = {
+						CreatedOnToolsVersion = 9.4;
+						LastSwiftMigration = 1000;
+						TestTargetID = 8320CCB2211564E5003E9792;
+					};
+				};
+			};
+			buildConfigurationList = 8320CCAE211564E5003E9792 /* Build configuration list for PBXProject "WordMatrix" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8320CCAA211564E5003E9792;
+			productRefGroup = 8320CCB4211564E5003E9792 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8320CCB2211564E5003E9792 /* WordMatrix */,
+				83476DFA2120ABF700BE5349 /* WordMatrixTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8320CCB1211564E5003E9792 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8320CCC1211564E9003E9792 /* LaunchScreen.storyboard in Resources */,
+				8320CCBE211564E9003E9792 /* Assets.xcassets in Resources */,
+				8320CCBC211564E5003E9792 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83476DF92120ABF700BE5349 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		499826453880601839AD272C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-WordMatrix-WordMatrixTests/Pods-WordMatrix-WordMatrixTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WordMatrix-WordMatrixTests/Pods-WordMatrix-WordMatrixTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		54E7A00E76FAEF1462E046DE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-WordMatrix/Pods-WordMatrix-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WordMatrix/Pods-WordMatrix-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A25974B460F532B8A0C62304 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WordMatrix-WordMatrixTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AF85068B747B97E4D6B9FE44 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WordMatrix-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8320CCAF211564E5003E9792 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				833607702124D43500812EB3 /* Model.swift in Sources */,
+				83476E1221220E2200BE5349 /* Sequence+Int.swift in Sources */,
+				83476E1021220E0800BE5349 /* Array+Point.swift in Sources */,
+				83476E0E21220DE700BE5349 /* Sequence+Point.swift in Sources */,
+				833607752124E1F300812EB3 /* GameViewController.swift in Sources */,
+				8320CCB7211564E5003E9792 /* AppDelegate.swift in Sources */,
+				83476DF62120A0A700BE5349 /* GameState.swift in Sources */,
+				8320CCC9211564F9003E9792 /* Redux.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83476DF72120ABF700BE5349 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83476E062120AC5500BE5349 /* GameStateSpec.swift in Sources */,
+				83476DFE2120ABF700BE5349 /* WordMatrixTests.swift in Sources */,
+				83476E0A2120E57F00BE5349 /* SequenceSpec.swift in Sources */,
+				83476E0C2120E89400BE5349 /* PointSpec.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		83476E012120ABF700BE5349 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8320CCB2211564E5003E9792 /* WordMatrix */;
+			targetProxy = 83476E002120ABF700BE5349 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8320CCBA211564E5003E9792 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8320CCBB211564E5003E9792 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8320CCBF211564E9003E9792 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8320CCC0211564E9003E9792 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8320CCC3211564E9003E9792 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8320CCC4211564E9003E9792 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8320CCC6211564E9003E9792 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FF992B4A6A04F7871E53FE2D /* Pods-WordMatrix.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = WordMatrix/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cjnevin.WordMatrix;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8320CCC7211564E9003E9792 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 46D7A7877278F4FB33154A6E /* Pods-WordMatrix.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = WordMatrix/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cjnevin.WordMatrix;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		83476E032120ABF700BE5349 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C655A6BB942B20102D99569D /* Pods-WordMatrix-WordMatrixTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = WordMatrixTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cjnevin.WordMatrixTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WordMatrix.app/WordMatrix";
+			};
+			name = Debug;
+		};
+		83476E042120ABF700BE5349 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EBBB40D937C8AFD220B9CD17 /* Pods-WordMatrix-WordMatrixTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = WordMatrixTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cjnevin.WordMatrixTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WordMatrix.app/WordMatrix";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8320CCAE211564E5003E9792 /* Build configuration list for PBXProject "WordMatrix" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8320CCC3211564E9003E9792 /* Debug */,
+				8320CCC4211564E9003E9792 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8320CCC5211564E9003E9792 /* Build configuration list for PBXNativeTarget "WordMatrix" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8320CCC6211564E9003E9792 /* Debug */,
+				8320CCC7211564E9003E9792 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		83476E022120ABF700BE5349 /* Build configuration list for PBXNativeTarget "WordMatrixTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83476E032120ABF700BE5349 /* Debug */,
+				83476E042120ABF700BE5349 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8320CCAB211564E5003E9792 /* Project object */;
+}
