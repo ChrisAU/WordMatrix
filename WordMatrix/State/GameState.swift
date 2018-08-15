@@ -307,11 +307,3 @@ private extension GameState {
         playerIndex = (playerIndex + 1) % players.count
     }
 }
-
-// MARK: Extensions
-
-private extension CountableRange where Bound == Int {
-    func contains(_ point: Point) -> Bool {
-        return contains(point.column) && contains(point.row)
-    }
-}

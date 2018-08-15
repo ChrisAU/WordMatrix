@@ -14,15 +14,17 @@
 		8320CCBE211564E9003E9792 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8320CCBD211564E9003E9792 /* Assets.xcassets */; };
 		8320CCC1211564E9003E9792 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8320CCBF211564E9003E9792 /* LaunchScreen.storyboard */; };
 		8320CCC9211564F9003E9792 /* Redux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8320CCC8211564F9003E9792 /* Redux.swift */; };
-		833607702124D43500812EB3 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8336076F2124D43500812EB3 /* Model.swift */; };
+		833607702124D43500812EB3 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8336076F2124D43500812EB3 /* Player.swift */; };
 		833607752124E1F300812EB3 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833607742124E1F300812EB3 /* GameViewController.swift */; };
+		833607782124E98400812EB3 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833607772124E98400812EB3 /* Point.swift */; };
+		8336077A2124E9ED00812EB3 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833607792124E9ED00812EB3 /* Game.swift */; };
+		8336077C2124EA0200812EB3 /* Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8336077B2124EA0200812EB3 /* Square.swift */; };
+		8336077E2124EA1400812EB3 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8336077D2124EA1400812EB3 /* Tile.swift */; };
 		83476DF62120A0A700BE5349 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83476DF52120A0A700BE5349 /* GameState.swift */; };
 		83476DFE2120ABF700BE5349 /* WordMatrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83476DFD2120ABF700BE5349 /* WordMatrixTests.swift */; };
 		83476E062120AC5500BE5349 /* GameStateSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83476E052120AC5500BE5349 /* GameStateSpec.swift */; };
 		83476E0A2120E57F00BE5349 /* SequenceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83476E092120E57F00BE5349 /* SequenceSpec.swift */; };
 		83476E0C2120E89400BE5349 /* PointSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83476E0B2120E89400BE5349 /* PointSpec.swift */; };
-		83476E0E21220DE700BE5349 /* Sequence+Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83476E0D21220DE700BE5349 /* Sequence+Point.swift */; };
-		83476E1021220E0800BE5349 /* Array+Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83476E0F21220E0800BE5349 /* Array+Point.swift */; };
 		83476E1221220E2200BE5349 /* Sequence+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83476E1121220E2200BE5349 /* Sequence+Int.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,8 +47,12 @@
 		8320CCC0211564E9003E9792 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8320CCC2211564E9003E9792 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8320CCC8211564F9003E9792 /* Redux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Redux.swift; sourceTree = "<group>"; };
-		8336076F2124D43500812EB3 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		8336076F2124D43500812EB3 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		833607742124E1F300812EB3 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		833607772124E98400812EB3 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
+		833607792124E9ED00812EB3 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		8336077B2124EA0200812EB3 /* Square.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Square.swift; sourceTree = "<group>"; };
+		8336077D2124EA1400812EB3 /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		83476DF52120A0A700BE5349 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		83476DFB2120ABF700BE5349 /* WordMatrixTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WordMatrixTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83476DFD2120ABF700BE5349 /* WordMatrixTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordMatrixTests.swift; sourceTree = "<group>"; };
@@ -54,8 +60,6 @@
 		83476E052120AC5500BE5349 /* GameStateSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateSpec.swift; sourceTree = "<group>"; };
 		83476E092120E57F00BE5349 /* SequenceSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceSpec.swift; sourceTree = "<group>"; };
 		83476E0B2120E89400BE5349 /* PointSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointSpec.swift; sourceTree = "<group>"; };
-		83476E0D21220DE700BE5349 /* Sequence+Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Point.swift"; sourceTree = "<group>"; };
-		83476E0F21220E0800BE5349 /* Array+Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Point.swift"; sourceTree = "<group>"; };
 		83476E1121220E2200BE5349 /* Sequence+Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Int.swift"; sourceTree = "<group>"; };
 		B24D208FE3F11540D1209174 /* Pods_WordMatrix_WordMatrixTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WordMatrix_WordMatrixTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7BD2011437323C50A01E904 /* Pods_WordMatrix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WordMatrix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,6 +133,18 @@
 			path = WordMatrix;
 			sourceTree = "<group>";
 		};
+		833607762124E97800812EB3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				833607792124E9ED00812EB3 /* Game.swift */,
+				8336076F2124D43500812EB3 /* Player.swift */,
+				833607772124E98400812EB3 /* Point.swift */,
+				8336077B2124EA0200812EB3 /* Square.swift */,
+				8336077D2124EA1400812EB3 /* Tile.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		83476DEB212061A100BE5349 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,10 +157,8 @@
 			isa = PBXGroup;
 			children = (
 				8320CCC8211564F9003E9792 /* Redux.swift */,
-				8336076F2124D43500812EB3 /* Model.swift */,
-				83476E0F21220E0800BE5349 /* Array+Point.swift */,
+				833607762124E97800812EB3 /* Model */,
 				83476E1121220E2200BE5349 /* Sequence+Int.swift */,
-				83476E0D21220DE700BE5349 /* Sequence+Point.swift */,
 				83476DF52120A0A700BE5349 /* GameState.swift */,
 			);
 			path = State;
@@ -361,14 +375,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				833607702124D43500812EB3 /* Model.swift in Sources */,
+				833607702124D43500812EB3 /* Player.swift in Sources */,
 				83476E1221220E2200BE5349 /* Sequence+Int.swift in Sources */,
-				83476E1021220E0800BE5349 /* Array+Point.swift in Sources */,
-				83476E0E21220DE700BE5349 /* Sequence+Point.swift in Sources */,
 				833607752124E1F300812EB3 /* GameViewController.swift in Sources */,
+				833607782124E98400812EB3 /* Point.swift in Sources */,
 				8320CCB7211564E5003E9792 /* AppDelegate.swift in Sources */,
 				83476DF62120A0A700BE5349 /* GameState.swift in Sources */,
+				8336077C2124EA0200812EB3 /* Square.swift in Sources */,
+				8336077E2124EA1400812EB3 /* Tile.swift in Sources */,
 				8320CCC9211564F9003E9792 /* Redux.swift in Sources */,
+				8336077A2124E9ED00812EB3 /* Game.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
