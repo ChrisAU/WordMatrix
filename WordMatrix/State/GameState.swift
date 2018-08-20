@@ -24,7 +24,7 @@ func newGame() -> Game {
         players: [Player(kind: .human, tiles: [], score: 0)],
         playerIndex: 0,
         playerRackAmount: 5,
-        playerTurnScore: 0)
+        playerSolution: nil)
 }
 
 let newGameSubject = BehaviorSubject<Game?>(value: nil)
@@ -85,7 +85,7 @@ enum TurnAction: Action {
 }
 
 enum TurnValidationAction: Action {
-    case valid(score: Score, candidate: [Point], intersections: [[Point]])
+    case valid(Solution)
     case invalid
 }
 
@@ -96,7 +96,11 @@ struct GameState: State {
     private(set) var players: [Player] = []
     private(set) var playerIndex: Int = 0
     private(set) var playerRackAmount: Int = 0
-    private(set) var playerTurnScore: Score = 0
+    
+    // Word
+    //private(set) var wordBingoScore: Int = 0
+    //private(set) var wordMaximumLength: Int = 0
+    private(set) var playerSolution: Solution? = nil
     
     // Bag
     private(set) var bag: [Tile] = []
@@ -107,8 +111,6 @@ struct GameState: State {
     private(set) var placed: [Tile: Point] = [:]
     private(set) var filled: [Point: Tile] = [:]
     private(set) var premium: [Point: Square] = [:]
-    private(set) var candidate: [Point] = []
-    private(set) var intersections: [[Point]] = []
     
     var player: Player {
         get {
@@ -152,7 +154,7 @@ private extension GameState {
             players = game.players
             playerIndex = game.playerIndex
             playerRackAmount = game.playerRackAmount
-            playerTurnScore = game.playerTurnScore
+            playerSolution = game.playerSolution
             filled = game.filled
             placed = game.placed
             premium = game.premium
@@ -224,14 +226,17 @@ private extension GameState {
     }
     
     private mutating func submit() {
-        assert(playerTurnScore != 0)
+        guard let solution = playerSolution else {
+            assertionFailure("Cannot submit if there is no solution")
+            return
+        }
         placed.forEach { (tile, point) in
             assert(filled[point] == nil)
             filled[point] = tile
             premium.removeValue(forKey: point)
         }
         placed = [:]
-        player.score += playerTurnScore
+        player.score += solution.score
         reduce(TurnValidationAction.invalid)
     }
 }
@@ -241,14 +246,10 @@ private extension GameState {
 private extension GameState {
     mutating func reduce(_ action: TurnValidationAction) {
         switch action {
-        case let .valid(newScore, newCandidate, newIntersections):
-            playerTurnScore = newScore
-            candidate = newCandidate
-            intersections = newIntersections
+        case let .valid(newSolution):
+            playerSolution = newSolution
         case .invalid:
-            playerTurnScore = 0
-            candidate = []
-            intersections = []
+            playerSolution = nil
         }
     }
 }
@@ -264,13 +265,13 @@ private extension GameState {
             if filled.isEmpty {
                 return .invalid
             } else {
-                return .valid(score: 1, candidate: [], intersections: [])
+                return .valid(Solution(score: 1, points: [], intersections: []))
             }
         } else {
             guard let points = points(), let candidate = points.first else {
                 return .invalid
             }
-            return .valid(score: 1, candidate: candidate, intersections: Array(points.dropFirst()))
+            return .valid(Solution(score: 1, points: candidate, intersections: Array(points.dropFirst())))
         }
     }
     

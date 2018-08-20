@@ -3,7 +3,7 @@ import RxSwift
 import RxSwiftExt
 
 protocol Action {
-    func toAsync() -> Observable<Action>
+    func asObservable() -> Observable<Action>
 }
 
 typealias Middleware<T: State> = (T, Action) -> Void
@@ -34,7 +34,8 @@ struct Store<T: State> {
     
     func fire(_ action: Action) {
         action
-            .toAsync()
+            .asObservable()
+            .subscribeOn(MainScheduler.asyncInstance)
             .subscribe(onNext: actionSubject.onNext)
             .disposed(by: bag)
     }
@@ -44,42 +45,28 @@ struct Store<T: State> {
     }
     
     subscript<U>(_ keyPath: KeyPath<T, U>) -> Observable<U> {
-        return observe(keyPath)
-    }
-    
-    subscript<U: Equatable>(_ keyPath: KeyPath<T, U>) -> Observable<U> {
-        return observe(keyPath)
-    }
-    
-    subscript<U: Equatable>(_ keyPath: KeyPath<T, [U]>) -> Observable<[U]> {
-        return observe(keyPath)
-    }
-}
-
-extension Store {
-    func observe<U>(_ keyPath: KeyPath<T, U>) -> Observable<U> {
         return observe().map(keyPath)
     }
     
-    func observe<U: Equatable>(_ keyPath: KeyPath<T, U>) -> Observable<U> {
+    subscript<U: Equatable>(_ keyPath: KeyPath<T, U>) -> Observable<U> {
         return observe().map(keyPath).distinctUntilChanged()
     }
     
-    func observe<U: Equatable>(_ keyPath: KeyPath<T, [U]>) -> Observable<[U]> {
+    subscript<U: Equatable>(_ keyPath: KeyPath<T, [U]>) -> Observable<[U]> {
         return observe().map(keyPath).distinctUntilChanged(==)
     }
 }
 
 extension Action {
-    func toAsync() -> Observable<Action> { return Observable<Action>.just(self) }
+    func asObservable() -> Observable<Action> { return Observable<Action>.just(self) }
 }
 
 extension Array: Action where Element == Action {
-    func toAsync() -> Observable<Action> { return Observable<Action>.concat(map { $0.toAsync() }) }
+    func asObservable() -> Observable<Action> { return Observable<Action>.concat(map { $0.asObservable() }) }
 }
 
 extension Observable: Action where Element == Action {
-    func toAsync() -> Observable<Action> { return map { $0 as Action } }
+    func asObservable() -> Observable<Action> { return map { $0 as Action } }
 }
 
 extension ObservableConvertibleType {

@@ -34,7 +34,7 @@ final class GameStateSpec: QuickSpec {
                 }
                 it("draws when players rack is missing a tile") {
                     sut.place(1)
-                    sut.reduce(TurnValidationAction.valid(score: 1, candidate: [], intersections: []))
+                    sut.reduce(TurnValidationAction.valid(Solution(score: 1, points: [], intersections: [])))
                     sut.reduce(TurnAction.submit)
                     let previousCount = sut.bag.count
                     sut.reduce(BagAction.draw)
@@ -98,36 +98,36 @@ final class GameStateSpec: QuickSpec {
                     expect(sut.placed.isEmpty) == true
                     expect(sut.filled.isEmpty) == true
                     sut.place(3)
-                    sut.reduce(TurnValidationAction.valid(score: 1, candidate: [], intersections: []))
+                    sut.reduce(TurnValidationAction.valid(Solution(score: 1, points: [], intersections: [])))
                     sut.reduce(TurnAction.submit)
                     expect(sut.placed.isEmpty) == true
                     expect(sut.filled.count) == 3
                     expect(sut.premium.isEmpty) == true
                     expect(sut.player.score) == 1
-                    expect(sut.playerTurnScore) == 0
+                    expect(sut.playerSolution).to(beNil())
                 }
             }
             
             context("TurnValidationAction") {
                 it("handles valid") {
-                    sut.reduce(TurnValidationAction.valid(score: 1, candidate: [], intersections: []))
-                    expect(sut.playerTurnScore) == 1
+                    sut.reduce(TurnValidationAction.valid(Solution(score: 1, points: [], intersections: [])))
+                    expect(sut.playerSolution?.score) == 1
                 }
                 it("resets valid on placement") {
-                    sut.reduce(TurnValidationAction.valid(score: 1, candidate: [], intersections: []))
+                    sut.reduce(TurnValidationAction.valid(Solution(score: 1, points: [], intersections: [])))
                     sut.place(1)
-                    expect(sut.playerTurnScore) == 0
+                    expect(sut.playerSolution).to(beNil())
                 }
                 it("resets valid on rack") {
-                    sut.reduce(TurnValidationAction.valid(score: 1, candidate: [], intersections: []))
+                    sut.reduce(TurnValidationAction.valid(Solution(score: 1, points: [], intersections: [])))
                     sut.place(1)
                     sut.rack(1)
-                    expect(sut.playerTurnScore) == 0
+                    expect(sut.playerSolution).to(beNil())
                 }
                 it("handles invalid") {
-                    sut.reduce(TurnValidationAction.valid(score: 1, candidate: [], intersections: []))
+                    sut.reduce(TurnValidationAction.valid(Solution(score: 1, points: [], intersections: [])))
                     sut.reduce(TurnValidationAction.invalid)
-                    expect(sut.playerTurnScore) == 0
+                    expect(sut.playerSolution).to(beNil())
                 }
             }
         }
@@ -170,7 +170,7 @@ private extension Game {
             players: [.zero, .zero, .zero, .zero],
             playerIndex: 0,
             playerRackAmount: 5,
-            playerTurnScore: 0)
+            playerSolution: nil)
     }()
 }
 

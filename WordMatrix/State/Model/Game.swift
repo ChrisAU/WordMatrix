@@ -9,5 +9,5 @@ struct Game: Equatable {
     let players: [Player]
     let playerIndex: Int
     let playerRackAmount: Int
-    let playerTurnScore: Score
+    let playerSolution: Solution?
 }

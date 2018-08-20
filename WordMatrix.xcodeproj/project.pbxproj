@@ -26,6 +26,7 @@
 		83476E0A2120E57F00BE5349 /* SequenceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83476E092120E57F00BE5349 /* SequenceSpec.swift */; };
 		83476E0C2120E89400BE5349 /* PointSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83476E0B2120E89400BE5349 /* PointSpec.swift */; };
 		83476E1221220E2200BE5349 /* Sequence+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83476E1121220E2200BE5349 /* Sequence+Int.swift */; };
+		83F51F4B2128D85600D0DC0F /* Solution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F51F4A2128D85600D0DC0F /* Solution.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		83476E092120E57F00BE5349 /* SequenceSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceSpec.swift; sourceTree = "<group>"; };
 		83476E0B2120E89400BE5349 /* PointSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointSpec.swift; sourceTree = "<group>"; };
 		83476E1121220E2200BE5349 /* Sequence+Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Int.swift"; sourceTree = "<group>"; };
+		83F51F4A2128D85600D0DC0F /* Solution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Solution.swift; sourceTree = "<group>"; };
 		B24D208FE3F11540D1209174 /* Pods_WordMatrix_WordMatrixTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WordMatrix_WordMatrixTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7BD2011437323C50A01E904 /* Pods_WordMatrix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WordMatrix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C655A6BB942B20102D99569D /* Pods-WordMatrix-WordMatrixTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordMatrix-WordMatrixTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WordMatrix-WordMatrixTests/Pods-WordMatrix-WordMatrixTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				833607792124E9ED00812EB3 /* Game.swift */,
 				8336076F2124D43500812EB3 /* Player.swift */,
 				833607772124E98400812EB3 /* Point.swift */,
+				83F51F4A2128D85600D0DC0F /* Solution.swift */,
 				8336077B2124EA0200812EB3 /* Square.swift */,
 				8336077D2124EA1400812EB3 /* Tile.swift */,
 			);
@@ -379,6 +382,7 @@
 				83476E1221220E2200BE5349 /* Sequence+Int.swift in Sources */,
 				833607752124E1F300812EB3 /* GameViewController.swift in Sources */,
 				833607782124E98400812EB3 /* Point.swift in Sources */,
+				83F51F4B2128D85600D0DC0F /* Solution.swift in Sources */,
 				8320CCB7211564E5003E9792 /* AppDelegate.swift in Sources */,
 				83476DF62120A0A700BE5349 /* GameState.swift in Sources */,
 				8336077C2124EA0200812EB3 /* Square.swift in Sources */,

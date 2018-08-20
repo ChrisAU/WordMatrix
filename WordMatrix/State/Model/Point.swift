@@ -7,6 +7,16 @@ struct Point: Equatable, Hashable {
     func value(forAxis axis: Axis) -> Int {
         return axis == .column ? column : row
     }
+    
+    static func make(_ a: Int, _ b: Int, on axis: Axis) -> Point {
+        if axis == .column {
+            return Point(row: b, column: a)
+        } else {
+            return Point(row: a, column: b)
+        }
+    }
+    
+    static let zero = Point(row: 0, column: 0)
 }
 
 enum Axis {
