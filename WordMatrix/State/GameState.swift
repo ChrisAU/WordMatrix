@@ -15,6 +15,7 @@ struct GameState: State {
     
     // Bag
     private(set) var bag: [Tile] = []
+    private(set) var letterCount: [Letter: Int] = [:]
     private(set) var letterScore: [Letter: Score] = [:]
     
     // Board
@@ -34,19 +35,19 @@ struct GameState: State {
     }
     
     mutating func reduce(_ command: Command) {
-        if let gameCommand = command as? GameCommand {
-            reduce(gameCommand)
+        if let cmd = command as? GameCommand {
+            reduceGame(cmd)
         } else {
             assert(players.count > playerIndex)
             switch command {
-            case let bagCommand as BagCommand:
-                reduce(bagCommand)
-            case let playerCommand as PlayerCommand:
-                reduce(playerCommand)
-            case let turnCommand as TurnCommand:
-                reduce(turnCommand)
-            case let turnValidationCommand as TurnValidationCommand:
-                reduce(turnValidationCommand)
+            case let cmd as BagCommand:
+                reduceBag(cmd)
+            case let cmd as PlayerCommand:
+                reducePlayer(cmd)
+            case let cmd as TurnCommand:
+                reduceTurn(cmd)
+            case let cmd as TurnValidationCommand:
+                reduceTurnValidation(cmd)
             default:
                 break
             }
@@ -61,10 +62,14 @@ enum GameCommand: Command {
 }
 
 private extension GameState {
-    mutating func reduce(_ command: GameCommand) {
+    mutating func reduceGame(_ command: GameCommand) {
         switch command {
         case .reset(let game):
             bag = game.bag
+            letterCount = bag.map { (letter: $0.letter, count: 1) }.reduce(into: [:]) { (result, current) in
+                let value = result[current.letter] ?? 0
+                result[current.letter] = value + current.count
+            }
             letterScore = bag.map { ($0.letter, $0.value) }.reduce(into: [:], { $0[$1.0] = $1.1 })
             
             players = game.players
@@ -78,8 +83,8 @@ private extension GameState {
             premium = game.premium
             
             for _ in players {
-                reduce(BagCommand.draw)
-                reduce(PlayerCommand.next)
+                reduceBag(BagCommand.draw)
+                reducePlayer(PlayerCommand.next)
             }
         }
     }
@@ -93,7 +98,7 @@ enum BagCommand: Command {
 }
 
 private extension GameState {
-    mutating func reduce(_ command: BagCommand) {
+    mutating func reduceBag(_ command: BagCommand) {
         switch command {
         case .draw:
             player.tiles += draw()
@@ -121,7 +126,7 @@ enum PlayerCommand: Command {
 }
 
 private extension GameState {
-    mutating func reduce(_ command: PlayerCommand) {
+    mutating func reducePlayer(_ command: PlayerCommand) {
         switch command {
         case .next:
             nextPlayer()
@@ -136,18 +141,21 @@ private extension GameState {
 // MARK: TurnCommand
 
 enum TurnCommand: Command {
+    case shuffle
     case rack(Tile)
     case place(Tile, at: Point)
     case submit
 }
 
 private extension GameState {
-    mutating func reduce(_ command: TurnCommand) {
+    mutating func reduceTurn(_ command: TurnCommand) {
         switch command {
         case let .place(tile, point):
             place(tile, at: point)
         case let .rack(tile):
             rack(tile)
+        case .shuffle:
+            player.tiles.shuffle()
         case .submit:
             submit()
         }
@@ -159,10 +167,10 @@ private extension GameState {
         assert(player.tiles != newTiles)
         player.tiles = newTiles
         if let returnedTile = placed.first(where: { $0.value == point })?.key {
-            reduce(TurnCommand.rack(returnedTile))
+            reduceTurn(TurnCommand.rack(returnedTile))
         }
         placed[tile] = point
-        reduce(TurnValidationCommand.invalid)
+        reduceTurnValidation(TurnValidationCommand.invalid)
     }
     
     private mutating func rack(_ tile: Tile) {
@@ -170,7 +178,7 @@ private extension GameState {
         assert(!player.tiles.contains(tile))
         player.tiles.append(tile)
         placed[tile] = nil
-        reduce(TurnValidationCommand.invalid)
+        reduceTurnValidation(TurnValidationCommand.invalid)
     }
     
     private mutating func submit() {
@@ -185,7 +193,7 @@ private extension GameState {
         }
         placed = [:]
         player.score += solution.score
-        reduce(TurnValidationCommand.invalid)
+        reduceTurnValidation(TurnValidationCommand.invalid)
     }
 }
 
@@ -197,7 +205,7 @@ enum TurnValidationCommand: Command {
 }
 
 private extension GameState {
-    mutating func reduce(_ command: TurnValidationCommand) {
+    mutating func reduceTurnValidation(_ command: TurnValidationCommand) {
         switch command {
         case let .valid(newSolution):
             playerSolution = newSolution

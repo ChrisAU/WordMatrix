@@ -16,6 +16,7 @@
 		83188CEF21345343001A9338 /* GameStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83188CEE21345343001A9338 /* GameStore.swift */; };
 		83188CF121345405001A9338 /* TurnValidationMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83188CF021345405001A9338 /* TurnValidationMiddleware.swift */; };
 		83188CF321345431001A9338 /* CommandLoggerMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83188CF221345431001A9338 /* CommandLoggerMiddleware.swift */; };
+		83188CF5213459D5001A9338 /* Array+Shuffle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83188CF4213459D5001A9338 /* Array+Shuffle.swift */; };
 		8320CCB7211564E5003E9792 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8320CCB6211564E5003E9792 /* AppDelegate.swift */; };
 		8320CCBC211564E5003E9792 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8320CCBA211564E5003E9792 /* Main.storyboard */; };
 		8320CCBE211564E9003E9792 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8320CCBD211564E9003E9792 /* Assets.xcassets */; };
@@ -54,6 +55,7 @@
 		83188CEE21345343001A9338 /* GameStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStore.swift; sourceTree = "<group>"; };
 		83188CF021345405001A9338 /* TurnValidationMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnValidationMiddleware.swift; sourceTree = "<group>"; };
 		83188CF221345431001A9338 /* CommandLoggerMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandLoggerMiddleware.swift; sourceTree = "<group>"; };
+		83188CF4213459D5001A9338 /* Array+Shuffle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Shuffle.swift"; sourceTree = "<group>"; };
 		8320CCB3211564E5003E9792 /* WordMatrix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordMatrix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8320CCB6211564E5003E9792 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8320CCBB211564E5003E9792 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				83188CF221345431001A9338 /* CommandLoggerMiddleware.swift */,
 				83188CF021345405001A9338 /* TurnValidationMiddleware.swift */,
 				833607762124E97800812EB3 /* Model */,
+				83188CF4213459D5001A9338 /* Array+Shuffle.swift */,
 				83476E1121220E2200BE5349 /* Sequence+Int.swift */,
 				83476DF52120A0A700BE5349 /* GameState.swift */,
 			);
@@ -354,6 +357,7 @@
 				8336077C2124EA0200812EB3 /* Square.swift in Sources */,
 				8336077E2124EA1400812EB3 /* Tile.swift in Sources */,
 				8320CCC9211564F9003E9792 /* Redux.swift in Sources */,
+				83188CF5213459D5001A9338 /* Array+Shuffle.swift in Sources */,
 				8336077A2124E9ED00812EB3 /* Game.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
