@@ -12,7 +12,7 @@ final class GameStateSpec: QuickSpec {
             beforeEach {
                 sut = GameState()
                 initialGame = Game.valid
-                sut.reduce(GameAction.reset(initialGame))
+                sut.reduce(GameCommand.reset(initialGame))
             }
             
             context("Reset") {
@@ -25,26 +25,26 @@ final class GameStateSpec: QuickSpec {
                 }
             }
             
-            context("BagAction") {
+            context("BagCommand") {
                 it("does not draw if all players have tiles") {
                     let previousBag = sut.bag
-                    sut.reduce(BagAction.draw)
+                    sut.reduce(BagCommand.draw)
                     expect(sut.bag) == previousBag
                     expect(sut.player.tiles.count) == sut.playerRackAmount
                 }
                 it("draws when players rack is missing a tile") {
                     sut.place(1)
-                    sut.reduce(TurnValidationAction.valid(Solution(score: 1, points: [], intersections: [])))
-                    sut.reduce(TurnAction.submit)
+                    sut.reduce(TurnValidationCommand.valid(Solution(score: 1, points: [], intersections: [])))
+                    sut.reduce(TurnCommand.submit)
                     let previousCount = sut.bag.count
-                    sut.reduce(BagAction.draw)
+                    sut.reduce(BagCommand.draw)
                     expect(sut.bag.count) == previousCount - 1
                     expect(sut.player.tiles.count) == initialGame.playerRackAmount
                 }
                 it("handles swap") {
                     let previousTiles = sut.player.tiles
                     let previousBag = sut.bag
-                    sut.reduce(BagAction.swap(sut.player.tiles))
+                    sut.reduce(BagCommand.swap(sut.player.tiles))
                     expect(sut.bag) != previousBag
                     expect(sut.player.tiles) != previousTiles
                     expect(sut.bag.count) == previousBag.count
@@ -52,26 +52,26 @@ final class GameStateSpec: QuickSpec {
                 }
             }
             
-            context("PlayerAction") {
+            context("PlayerCommand") {
                 it("handles next") {
                     let current = sut.playerIndex
-                    sut.reduce(PlayerAction.next)
+                    sut.reduce(PlayerCommand.next)
                     expect(sut.playerIndex) != current
                 }
                 it("handles next when at end") {
                     let current = sut.playerIndex
                     _ = (0..<sut.players.count - 1).reduce(current) { (current, next) in
-                        sut.reduce(PlayerAction.next)
+                        sut.reduce(PlayerCommand.next)
                         expect(sut.playerIndex) != current
                         expect(sut.playerIndex) != next
                         return sut.playerIndex
                     }
-                    sut.reduce(PlayerAction.next)
+                    sut.reduce(PlayerCommand.next)
                     expect(sut.playerIndex) == current
                 }
             }
             
-            context("TurnAction") {
+            context("TurnCommand") {
                 it("handles place on single point") {
                     expect(sut.player.tiles.count) == initialGame.playerRackAmount
                     expect(sut.placed.count) == 0
@@ -98,8 +98,8 @@ final class GameStateSpec: QuickSpec {
                     expect(sut.placed.isEmpty) == true
                     expect(sut.filled.isEmpty) == true
                     sut.place(3)
-                    sut.reduce(TurnValidationAction.valid(Solution(score: 1, points: [], intersections: [])))
-                    sut.reduce(TurnAction.submit)
+                    sut.reduce(TurnValidationCommand.valid(Solution(score: 1, points: [], intersections: [])))
+                    sut.reduce(TurnCommand.submit)
                     expect(sut.placed.isEmpty) == true
                     expect(sut.filled.count) == 3
                     expect(sut.premium.isEmpty) == true
@@ -108,25 +108,25 @@ final class GameStateSpec: QuickSpec {
                 }
             }
             
-            context("TurnValidationAction") {
+            context("TurnValidationCommand") {
                 it("handles valid") {
-                    sut.reduce(TurnValidationAction.valid(Solution(score: 1, points: [], intersections: [])))
+                    sut.reduce(TurnValidationCommand.valid(Solution(score: 1, points: [], intersections: [])))
                     expect(sut.playerSolution?.score) == 1
                 }
                 it("resets valid on placement") {
-                    sut.reduce(TurnValidationAction.valid(Solution(score: 1, points: [], intersections: [])))
+                    sut.reduce(TurnValidationCommand.valid(Solution(score: 1, points: [], intersections: [])))
                     sut.place(1)
                     expect(sut.playerSolution).to(beNil())
                 }
                 it("resets valid on rack") {
-                    sut.reduce(TurnValidationAction.valid(Solution(score: 1, points: [], intersections: [])))
+                    sut.reduce(TurnValidationCommand.valid(Solution(score: 1, points: [], intersections: [])))
                     sut.place(1)
                     sut.rack(1)
                     expect(sut.playerSolution).to(beNil())
                 }
                 it("handles invalid") {
-                    sut.reduce(TurnValidationAction.valid(Solution(score: 1, points: [], intersections: [])))
-                    sut.reduce(TurnValidationAction.invalid)
+                    sut.reduce(TurnValidationCommand.valid(Solution(score: 1, points: [], intersections: [])))
+                    sut.reduce(TurnValidationCommand.invalid)
                     expect(sut.playerSolution).to(beNil())
                 }
             }
@@ -137,7 +137,7 @@ final class GameStateSpec: QuickSpec {
 private extension GameState {
     mutating func rack(_ n: Int) {
         Array(placed.keys)[0..<n].forEach {
-            reduce(TurnAction.rack($0))
+            reduce(TurnCommand.rack($0))
         }
     }
     
@@ -145,7 +145,7 @@ private extension GameState {
         (0..<n).forEach {
             let row = ascendingRows ? $0 : 0
             reduce(
-                TurnAction.place(player.tiles[0],
+                TurnCommand.place(player.tiles[0],
                                  at: Point(row: row, column: 0)))
         }
     }

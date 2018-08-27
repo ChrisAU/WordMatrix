@@ -1,76 +1,73 @@
 import Foundation
-import RxSwift
-import RxSwiftExt
+import ReactiveSwift
+import enum Result.NoError
 
-protocol Action {
-    func asObservable() -> Observable<Action>
-}
+protocol Command { }
 
-typealias Middleware<T: State> = (T, Action) -> Void
+typealias Middleware<T: State> = (T, Command) -> Void
 
-typealias Reducer<T: State> = (T, Action) -> T
+typealias Reducer<T: State> = (T, Command) -> T
 
 protocol State { }
 
 struct Store<T: State> {
-    private let actionSubject = BehaviorSubject<Action?>(value: nil)
-    private let stateObservable: Observable<T>
-    private let bag = DisposeBag()
+    private let commandSignal = Signal<Command, NoError>.pipe()
+    private let stateProperty: Property<T>
     
     init(state: T,
          reducer: @escaping Reducer<T>,
          middleware: [Middleware<T>]) {
-        stateObservable = actionSubject
-            .unwrap()
-            .observeOn(MainScheduler.asyncInstance)
-            .scan(state, accumulator: reducer)
-            .share()
-        Observable
-            .zip(stateObservable, actionSubject.unwrap())
-            .subscribeOn(SerialDispatchQueueScheduler(qos: .userInitiated))
-            .subscribe(onNext: { (state, action) in middleware.forEach { $0(state, action) } })
-            .disposed(by: bag)
+        stateProperty = Property<T>(
+            initial: state,
+            then: commandSignal.output
+                .scan(state) { middleware.call(reducer, $0, $1) })
     }
     
-    func fire(_ action: Action) {
-        action
-            .asObservable()
-            .subscribeOn(MainScheduler.asyncInstance)
-            .subscribe(onNext: actionSubject.onNext)
-            .disposed(by: bag)
+    func fire(_ command: Command) {
+        commandSignal.input.send(value: command)
     }
     
-    func observe() -> Observable<T> {
-        return stateObservable
+    func observe() -> Property<T> {
+        return stateProperty
+    }
+}
+
+extension Store {
+    func fire(_ commandProvider: () -> Command) {
+        fire(commandProvider())
     }
     
-    subscript<U>(_ keyPath: KeyPath<T, U>) -> Observable<U> {
+    func fire(_ signal: Signal<Command, NoError>) {
+        signal.observeValues(fire)
+    }
+    
+    subscript<U>(_ keyPath: KeyPath<T, U>) -> Property<U> {
         return observe().map(keyPath)
     }
     
-    subscript<U: Equatable>(_ keyPath: KeyPath<T, U>) -> Observable<U> {
-        return observe().map(keyPath).distinctUntilChanged()
+    subscript<U: Equatable>(_ keyPath: KeyPath<T, U>) -> Property<U> {
+        return observe().map(keyPath).skipRepeats(==)
     }
     
-    subscript<U: Equatable>(_ keyPath: KeyPath<T, [U]>) -> Observable<[U]> {
-        return observe().map(keyPath).distinctUntilChanged(==)
+    subscript<U: Equatable>(_ keyPath: KeyPath<T, [U]>) -> Property<[U]> {
+        return observe().map(keyPath).skipRepeats(==)
     }
 }
 
-extension Action {
-    func asObservable() -> Observable<Action> { return Observable<Action>.just(self) }
+extension Property {
+    func map<T>(_ keyPath: KeyPath<Value, T>) -> Property<T> {
+        return map { $0[keyPath: keyPath] }
+    }
 }
 
-extension Array: Action where Element == Action {
-    func asObservable() -> Observable<Action> { return Observable<Action>.concat(map { $0.asObservable() }) }
+extension Signal.Observer {
+    func send(_ valueProvider: () -> Value) {
+        send(value: valueProvider())
+    }
 }
 
-extension Observable: Action where Element == Action {
-    func asObservable() -> Observable<Action> { return map { $0 as Action } }
-}
-
-extension ObservableConvertibleType {
-    func map<T>(_ keyPath: KeyPath<E, T>) -> Observable<T> {
-        return asObservable().map { $0[keyPath: keyPath] }
+private extension Sequence {
+    func call<T: State>(_ reducer: Reducer<T>, _ state: T, _ command: Command) -> T where Element == Middleware<T> {
+        return reduce(reducer(state, command)) { $1(state, command); return $0 }
     }
 }
