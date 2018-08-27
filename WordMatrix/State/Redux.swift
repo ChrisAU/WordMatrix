@@ -20,7 +20,7 @@ struct Store<T: State> {
         stateProperty = Property<T>(
             initial: state,
             then: commandSignal.output
-                .scan(state) { middleware.call(reducer, $0, $1) })
+                .scan(state) { middleware.call(reducer($0, $1), $1) })
     }
     
     func fire(_ command: Command) {
@@ -67,7 +67,7 @@ extension Signal.Observer {
 }
 
 private extension Sequence {
-    func call<T: State>(_ reducer: Reducer<T>, _ state: T, _ command: Command) -> T where Element == Middleware<T> {
-        return reduce(reducer(state, command)) { $1(state, command); return $0 }
+    func call<T: State>(_ state: T, _ command: Command) -> T where Element == Middleware<T> {
+        return reduce(state) { $1(state, command); return $0 }
     }
 }

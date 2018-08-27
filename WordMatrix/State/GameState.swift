@@ -2,89 +2,6 @@ import Foundation
 import ReactiveSwift
 import enum Result.NoError
 
-// MARK: Store
-
-let store = Store(
-    state: GameState(),
-    reducer: gameReducer,
-    middleware: [commandLogger, validateTurn])
-
-// MARK: Reducer
-
-func gameReducer(_ state: GameState, _ command: Command) -> GameState {
-    debugPrint("Reduce \(command.mirrorLabel)")
-    var newState = state
-    newState.reduce(command)
-    return newState
-}
-
-// MARK: Middleware
-
-private extension Command {
-    private var mirrorChild: Mirror.Child? {
-        return Mirror(reflecting: self).children.first
-    }
-    
-    var mirrorLabel: String {
-        let text = mirrorChild?.label ?? String(describing: self)
-        return text.replacingOccurrences(of: "()", with: "")
-    }
-    
-    var mirrorValue: Any? {
-        return mirrorChild?.value
-    }
-}
-
-func commandLogger(_ state: GameState, _ command: Command) {
-    func strip(_ from: String) -> String {
-        return from.replacingOccurrences(of: "WordMatrix.", with: "")
-    }
-    let _type = "\(type(of: command))"
-    let label = command.mirrorLabel
-    let prefix = _type == label ? label : "\(_type).\(label)"
-    print("#",
-          prefix,
-          "-->",
-          strip("\(state)"))
-}
-
-func validateTurn(_ state: GameState, _ command: Command) {
-    switch command {
-    case TurnCommand.place, TurnCommand.rack:
-        store.fire(state.validate)
-    default:
-        break
-    }
-}
-
-// MARK: Commands
-
-enum BagCommand: Command {
-    case draw
-    case swap([Tile])
-}
-
-enum PlayerCommand: Command {
-    case next
-}
-
-enum GameCommand: Command {
-    case reset(Game)
-}
-
-enum TurnCommand: Command {
-    case rack(Tile)
-    case place(Tile, at: Point)
-    case submit
-}
-
-enum TurnValidationCommand: Command {
-    case valid(Solution)
-    case invalid
-}
-
-// MARK: State
-
 struct GameState: State {
     // Player
     private(set) var players: [Player] = []
@@ -139,6 +56,10 @@ struct GameState: State {
 
 // MARK: GameCommand
 
+enum GameCommand: Command {
+    case reset(Game)
+}
+
 private extension GameState {
     mutating func reduce(_ command: GameCommand) {
         switch command {
@@ -166,6 +87,11 @@ private extension GameState {
 
 // MARK: BagCommand
 
+enum BagCommand: Command {
+    case draw
+    case swap([Tile])
+}
+
 private extension GameState {
     mutating func reduce(_ command: BagCommand) {
         switch command {
@@ -188,7 +114,32 @@ private extension GameState {
     }
 }
 
+// MARK: PlayerCommand
+
+enum PlayerCommand: Command {
+    case next
+}
+
+private extension GameState {
+    mutating func reduce(_ command: PlayerCommand) {
+        switch command {
+        case .next:
+            nextPlayer()
+        }
+    }
+    
+    private mutating func nextPlayer() {
+        playerIndex = (playerIndex + 1) % players.count
+    }
+}
+
 // MARK: TurnCommand
+
+enum TurnCommand: Command {
+    case rack(Tile)
+    case place(Tile, at: Point)
+    case submit
+}
 
 private extension GameState {
     mutating func reduce(_ command: TurnCommand) {
@@ -240,6 +191,11 @@ private extension GameState {
 
 // MARK: TurnValidationCommand
 
+enum TurnValidationCommand: Command {
+    case valid(Solution)
+    case invalid
+}
+
 private extension GameState {
     mutating func reduce(_ command: TurnValidationCommand) {
         switch command {
@@ -248,60 +204,5 @@ private extension GameState {
         case .invalid:
             playerSolution = nil
         }
-    }
-}
-
-// MARK: TurnValidationMiddleware
-
-private extension GameState {
-    func validate() -> TurnValidationCommand {
-        if placed.isEmpty {
-            return .invalid
-        }
-        if placed.count == 1 {
-            if filled.isEmpty {
-                return .invalid
-            } else {
-                return .valid(Solution(score: 1, points: [], intersections: []))
-            }
-        } else {
-            guard let points = points(), let candidate = points.first else {
-                return .invalid
-            }
-            return .valid(Solution(score: 1, points: candidate, intersections: Array(points.dropFirst())))
-        }
-    }
-    
-    private func points() -> [[Point]]? {
-        return points(for: .column) ?? points(for: .row)
-    }
-    
-    private func points(for axis: Axis) -> [[Point]]? {
-        let fluid = Array(placed.values)
-        let fixed = Array(filled.keys)
-        guard let byAxis = fluid.union(with: fixed, on: axis),
-            !byAxis.isEmpty else {
-                return nil
-        }
-        if let byOppositeAxis = fluid.intersections(with: fixed, on: axis.inverse) {
-            return [byAxis] + byOppositeAxis
-        } else {
-            return [byAxis]
-        }
-    }
-}
-
-// MARK: PlayerCommand
-
-private extension GameState {
-    mutating func reduce(_ command: PlayerCommand) {
-        switch command {
-        case .next:
-            nextPlayer()
-        }
-    }
-    
-    private mutating func nextPlayer() {
-        playerIndex = (playerIndex + 1) % players.count
     }
 }

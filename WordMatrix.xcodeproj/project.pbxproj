@@ -13,6 +13,9 @@
 		83188CE821344ECF001A9338 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83188CD3213449CF001A9338 /* ReactiveSwift.framework */; };
 		83188CE921344ECF001A9338 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83188CD7213449DF001A9338 /* Quick.framework */; };
 		83188CEA21344ECF001A9338 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83188CD8213449DF001A9338 /* Nimble.framework */; };
+		83188CEF21345343001A9338 /* GameStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83188CEE21345343001A9338 /* GameStore.swift */; };
+		83188CF121345405001A9338 /* TurnValidationMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83188CF021345405001A9338 /* TurnValidationMiddleware.swift */; };
+		83188CF321345431001A9338 /* CommandLoggerMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83188CF221345431001A9338 /* CommandLoggerMiddleware.swift */; };
 		8320CCB7211564E5003E9792 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8320CCB6211564E5003E9792 /* AppDelegate.swift */; };
 		8320CCBC211564E5003E9792 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8320CCBA211564E5003E9792 /* Main.storyboard */; };
 		8320CCBE211564E9003E9792 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8320CCBD211564E9003E9792 /* Assets.xcassets */; };
@@ -48,6 +51,9 @@
 		83188CD4213449D0001A9338 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		83188CD7213449DF001A9338 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		83188CD8213449DF001A9338 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
+		83188CEE21345343001A9338 /* GameStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStore.swift; sourceTree = "<group>"; };
+		83188CF021345405001A9338 /* TurnValidationMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnValidationMiddleware.swift; sourceTree = "<group>"; };
+		83188CF221345431001A9338 /* CommandLoggerMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandLoggerMiddleware.swift; sourceTree = "<group>"; };
 		8320CCB3211564E5003E9792 /* WordMatrix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordMatrix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8320CCB6211564E5003E9792 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8320CCBB211564E5003E9792 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -154,6 +160,9 @@
 			isa = PBXGroup;
 			children = (
 				8320CCC8211564F9003E9792 /* Redux.swift */,
+				83188CEE21345343001A9338 /* GameStore.swift */,
+				83188CF221345431001A9338 /* CommandLoggerMiddleware.swift */,
+				83188CF021345405001A9338 /* TurnValidationMiddleware.swift */,
 				833607762124E97800812EB3 /* Model */,
 				83476E1121220E2200BE5349 /* Sequence+Int.swift */,
 				83476DF52120A0A700BE5349 /* GameState.swift */,
@@ -333,12 +342,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				833607702124D43500812EB3 /* Player.swift in Sources */,
+				83188CEF21345343001A9338 /* GameStore.swift in Sources */,
+				83188CF121345405001A9338 /* TurnValidationMiddleware.swift in Sources */,
 				83476E1221220E2200BE5349 /* Sequence+Int.swift in Sources */,
 				833607752124E1F300812EB3 /* GameViewController.swift in Sources */,
 				833607782124E98400812EB3 /* Point.swift in Sources */,
 				83F51F4B2128D85600D0DC0F /* Solution.swift in Sources */,
 				8320CCB7211564E5003E9792 /* AppDelegate.swift in Sources */,
 				83476DF62120A0A700BE5349 /* GameState.swift in Sources */,
+				83188CF321345431001A9338 /* CommandLoggerMiddleware.swift in Sources */,
 				8336077C2124EA0200812EB3 /* Square.swift in Sources */,
 				8336077E2124EA1400812EB3 /* Tile.swift in Sources */,
 				8320CCC9211564F9003E9792 /* Redux.swift in Sources */,

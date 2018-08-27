@@ -46,6 +46,8 @@ extension CountableClosedRange where Bound == Int {
 
 extension Axis {
     func solutions(at point: Point) -> [Solution] {
+        
+        
         return []
     }
 }
