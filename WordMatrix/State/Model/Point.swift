@@ -72,9 +72,7 @@ extension Array where Element == Point {
         }
         assert(current.count == count)
         
-        guard let around = other.around(first, and: last, on: axis) else {
-            return current
-        }
+        let around = other.around(first, and: last, on: axis) ?? []
         let all = (current + around).sorted(by: axis)
         guard !all.isEmpty, all.isSequential(on: axis) else {
             return nil

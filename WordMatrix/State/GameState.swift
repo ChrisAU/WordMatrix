@@ -3,12 +3,6 @@ import ReactiveSwift
 import enum Result.NoError
 
 struct GameState: State {
-    // Player
-    private(set) var players: [Player] = []
-    private(set) var playerIndex: Int = 0
-    private(set) var playerRackAmount: Int = 0
-    private(set) var playerSolution: Solution? = nil
-    
     // Word
     //private(set) var wordBingoScore: Int = 0
     //private(set) var wordMaximumLength: Int = 0
@@ -23,6 +17,12 @@ struct GameState: State {
     private(set) var placed: [Tile: Point] = [:]
     private(set) var filled: [Point: Tile] = [:]
     private(set) var premium: [Point: Square] = [:]
+    
+    // Player
+    private(set) var players: [Player] = []
+    private(set) var playerIndex: Int = 0
+    private(set) var playerRackAmount: Int = 0
+    private(set) var playerSolution: Solution? = nil
     
     var player: Player {
         get {
