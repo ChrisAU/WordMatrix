@@ -7,20 +7,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         bindReset()
+        
+        // TODO: As middleware
+        store.observe().map { $0.collect() }
+            .signal
+            .observeValues { (solutions) in
+                print("Solutions: \(solutions)")
+        }
+        
         reset()
-        
-        let max = 15
-        let range = CountableClosedRange(0..<max)
-        
-        let solutions = Point.matrix(size: max)
-            .flatMap { (point: $0, axes: range.axes(for: $0)) }
-            .filter { !$0.axes.isEmpty }
-            .flatMap { (point, axes) -> [Solution] in
-                axes.flatMap { $0.solutions(at: point) }
-            }
-            .lazy
-        
-        print(solutions)
         
         return true
     }

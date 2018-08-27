@@ -26,7 +26,7 @@ extension Int {
     }
 }
 
-extension CountableClosedRange where Bound == Int {
+extension CountableRange where Bound == Int {
     func range(_ size: Int) -> AnyIterator<AnyIterator<Int>> {
         return AnyIterator(map { AnyIterator((0...(size - $0)).makeIterator()) }.makeIterator())
     }
@@ -44,24 +44,17 @@ extension CountableClosedRange where Bound == Int {
     }
 }
 
-extension Axis {
-    func solutions(at point: Point) -> [Solution] {
-        
-        
+extension GameState {
+    func solutions(at point: Point, on axis: Axis) -> [Solution] {
         return []
     }
-}
-
-func collect() {
-    let max = 15
-    let range = CountableClosedRange(0..<max)
     
-    let solutions = Point.matrix(size: max)
-        .flatMap { (point: $0, axes: range.axes(for: $0)) }
-        .filter { !$0.axes.isEmpty }
-        .flatMap { (point, axes) -> [Solution] in
-            axes.flatMap { $0.solutions(at: point) }
-        }
-        .lazy
-    
+    func collect() -> [Solution] {
+        return Point.matrix(size: range.upperBound)
+            .compactMap { (point: $0, axes: range.axes(for: $0)) }
+            .filter { !$0.axes.isEmpty }
+            .flatMap { (point, axes) -> [Solution] in
+                axes.flatMap { self.solutions(at: point, on: $0) }
+            }
+    }
 }
