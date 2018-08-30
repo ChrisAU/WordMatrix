@@ -33,12 +33,20 @@ struct Store<T: State> {
 }
 
 extension Store {
-    func fire(_ commandProvider: () -> Command) {
-        fire(commandProvider())
+    func fire(_ commands: [Command]) {
+        commands.forEach(fire)
+    }
+    
+    func fire(_ commandProducer: () -> Command) {
+        fire(commandProducer())
     }
     
     func fire(_ signal: Signal<Command, NoError>) {
         signal.observeValues(fire)
+    }
+    
+    func fire(_ signals: [Signal<Command, NoError>]) {
+        Signal.combineLatest(signals).observeValues(fire)
     }
     
     subscript<U>(_ keyPath: KeyPath<T, U>) -> Property<U> {
@@ -54,15 +62,33 @@ extension Store {
     }
 }
 
-extension Property {
-    func map<T>(_ keyPath: KeyPath<Value, T>) -> Property<T> {
-        return map { $0[keyPath: keyPath] }
+extension Command {
+    func fire() {
+        store.fire(self)
     }
 }
 
-extension Signal.Observer {
-    func send(_ valueProvider: () -> Value) {
-        send(value: valueProvider())
+extension Sequence where Element: Command {
+    func fire() {
+        store.fire(Array(self))
+    }
+}
+
+extension Signal where Value == Command, Error == NoError {
+    func fire() {
+        store.fire(self)
+    }
+}
+
+extension Sequence where Element == Signal<Command, NoError> {
+    func fire() {
+        store.fire(Array(self))
+    }
+}
+
+extension Property {
+    func map<T>(_ keyPath: KeyPath<Value, T>) -> Property<T> {
+        return map { $0[keyPath: keyPath] }
     }
 }
 

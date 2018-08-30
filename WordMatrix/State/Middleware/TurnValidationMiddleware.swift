@@ -39,10 +39,7 @@ private extension GameState {
             !byAxis.isEmpty else {
                 return nil
         }
-        if let byOppositeAxis = fluid.intersections(with: fixed, on: axis.inverse) {
-            return [byAxis] + byOppositeAxis
-        } else {
-            return [byAxis]
-        }
+        let oppositeAxis = (fluid.intersections(with: fixed, on: axis.inverse) ?? [])
+        return [byAxis] + oppositeAxis
     }
 }
