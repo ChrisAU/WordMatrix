@@ -28,11 +28,33 @@ struct Store<T: State> {
     }
     
     func fire(_ command: Command) {
-        commandSignal.input.send(value: command)
+        DispatchQueue.main.async { [commandSignal] in
+            commandSignal.input.send(value: command)
+        }
     }
     
     func observe() -> Property<T> {
         return stateProperty
+    }
+}
+
+extension Property {
+    func map<T>(_ keyPath: KeyPath<Value, T>) -> Property<T> {
+        return map { $0[keyPath: keyPath] }
+    }
+}
+
+extension Store {
+    subscript<U>(_ keyPath: KeyPath<T, U>) -> Property<U> {
+        return observe().map(keyPath)
+    }
+    
+    subscript<U: Equatable>(_ keyPath: KeyPath<T, U>) -> Property<U> {
+        return observe().map(keyPath).skipRepeats(==)
+    }
+    
+    subscript<U: Equatable>(_ keyPath: KeyPath<T, [U]>) -> Property<[U]> {
+        return observe().map(keyPath).skipRepeats(==)
     }
 }
 
@@ -51,18 +73,6 @@ extension Store {
     
     func fire(_ signals: [Signal<Command, NoError>]) {
         Signal.combineLatest(signals).observeValues(fire)
-    }
-    
-    subscript<U>(_ keyPath: KeyPath<T, U>) -> Property<U> {
-        return observe().map(keyPath)
-    }
-    
-    subscript<U: Equatable>(_ keyPath: KeyPath<T, U>) -> Property<U> {
-        return observe().map(keyPath).skipRepeats(==)
-    }
-    
-    subscript<U: Equatable>(_ keyPath: KeyPath<T, [U]>) -> Property<[U]> {
-        return observe().map(keyPath).skipRepeats(==)
     }
 }
 
@@ -90,18 +100,12 @@ extension Sequence where Element == Signal<Command, NoError> {
     }
 }
 
-extension Property {
-    func map<T>(_ keyPath: KeyPath<Value, T>) -> Property<T> {
-        return map { $0[keyPath: keyPath] }
-    }
-}
-
 private extension Sequence {
-    func intercept<T: State>(_ state: T, command: Command) -> Bool where Element == Interceptor<T> {
-        return reduce(false) { $0 || $1(state, command) }
-    }
-    
     func apply<T: State>(_ state: T, _ command: Command) where Element == SideEffect<T> {
         return forEach { $0(state, command) }
+    }
+    
+    func intercept<T: State>(_ state: T, command: Command) -> Bool where Element == Interceptor<T> {
+        return reduce(false) { $0 || $1(state, command) }
     }
 }

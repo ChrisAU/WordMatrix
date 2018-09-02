@@ -36,6 +36,7 @@
 		83476E0C2120E89400BE5349 /* PointSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83476E0B2120E89400BE5349 /* PointSpec.swift */; };
 		83476E1221220E2200BE5349 /* Sequence+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83476E1121220E2200BE5349 /* Sequence+Int.swift */; };
 		83F51F4B2128D85600D0DC0F /* Solution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F51F4A2128D85600D0DC0F /* Solution.swift */; };
+		FE567E4C213BFC8500EA3B77 /* GameResetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE567E4B213BFC8500EA3B77 /* GameResetter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		83476E0B2120E89400BE5349 /* PointSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointSpec.swift; sourceTree = "<group>"; };
 		83476E1121220E2200BE5349 /* Sequence+Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Int.swift"; sourceTree = "<group>"; };
 		83F51F4A2128D85600D0DC0F /* Solution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Solution.swift; sourceTree = "<group>"; };
+		FE567E4B213BFC8500EA3B77 /* GameResetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResetter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				83188CF221345431001A9338 /* CommandLogger.swift */,
+				FE567E4B213BFC8500EA3B77 /* GameResetter.swift */,
 				83188CF021345405001A9338 /* TurnValidation.swift */,
 			);
 			path = SideEffects;
@@ -372,6 +375,7 @@
 				83F51F4B2128D85600D0DC0F /* Solution.swift in Sources */,
 				8320CCB7211564E5003E9792 /* AppDelegate.swift in Sources */,
 				83476DF62120A0A700BE5349 /* GameState.swift in Sources */,
+				FE567E4C213BFC8500EA3B77 /* GameResetter.swift in Sources */,
 				83188CF321345431001A9338 /* CommandLogger.swift in Sources */,
 				8336077C2124EA0200812EB3 /* Square.swift in Sources */,
 				831CE67A21383C0A008BE096 /* Signal+Extensions.swift in Sources */,

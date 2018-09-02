@@ -58,6 +58,7 @@ struct GameState: State {
 // MARK: GameCommand
 
 enum GameCommand: Command {
+    case `new`
     case reset(Game)
 }
 
@@ -86,6 +87,8 @@ private extension GameState {
                 reduceBag(BagCommand.draw)
                 reducePlayer(PlayerCommand.next)
             }
+        default:
+            break
         }
     }
 }
