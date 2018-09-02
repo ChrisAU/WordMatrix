@@ -3,7 +3,7 @@ import Foundation
 let store = Store(
     state: GameState(),
     reducer: gameReducer,
-    middleware: [commandLogger, validateTurn])
+    sideEffects: [commandLogger, turnValidator])
 
 func gameReducer(_ state: GameState, _ command: Command) -> GameState {
     var newState = state

@@ -3,12 +3,10 @@ import ReactiveSwift
 import enum Result.NoError
 
 protocol Command { }
-
-typealias Middleware<T: State> = (T, Command) -> Void
-
-typealias Reducer<T: State> = (T, Command) -> T
-
 protocol State { }
+typealias Interceptor<T: State> = (T, Command) -> Bool
+typealias Reducer<T: State> = (T, Command) -> T
+typealias SideEffect<T: State> = (T, Command) -> Void
 
 struct Store<T: State> {
     private let commandSignal = Signal<Command, NoError>.pipe()
@@ -16,11 +14,17 @@ struct Store<T: State> {
     
     init(state: T,
          reducer: @escaping Reducer<T>,
-         middleware: [Middleware<T>]) {
+         interceptors: [Interceptor<T>] = [],
+         sideEffects: [SideEffect<T>] = []) {
         stateProperty = Property<T>(
             initial: state,
             then: commandSignal.output
-                .scan(state) { middleware.call(reducer($0, $1), $1) })
+                .scan(state) {
+                    if interceptors.intercept($0, command: $1) { return $0 }
+                    let newState = reducer($0, $1)
+                    sideEffects.apply(newState, $1)
+                    return newState
+            })
     }
     
     func fire(_ command: Command) {
@@ -93,7 +97,11 @@ extension Property {
 }
 
 private extension Sequence {
-    func call<T: State>(_ state: T, _ command: Command) -> T where Element == Middleware<T> {
-        return reduce(state) { $1(state, command); return $0 }
+    func intercept<T: State>(_ state: T, command: Command) -> Bool where Element == Interceptor<T> {
+        return reduce(false) { $0 || $1(state, command) }
+    }
+    
+    func apply<T: State>(_ state: T, _ command: Command) where Element == SideEffect<T> {
+        return forEach { $0(state, command) }
     }
 }

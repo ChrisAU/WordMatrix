@@ -1,5 +1,6 @@
 import UIKit
 import ReactiveSwift
+import enum Result.NoError
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

@@ -1,6 +1,6 @@
 import Foundation
 
-func commandLogger(_ state: GameState, _ command: Command) {
+let commandLogger: SideEffect<GameState> = { state, command in
     func strip(_ from: String) -> String {
         return from.replacingOccurrences(of: "WordMatrix.", with: "")
     }

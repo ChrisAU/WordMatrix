@@ -1,6 +1,6 @@
 import Foundation
 
-func validateTurn(_ state: GameState, _ command: Command) {
+let turnValidator: SideEffect<GameState> = { state, command in
     switch command {
     case TurnCommand.place, TurnCommand.rack:
         store.fire(state.validate)
